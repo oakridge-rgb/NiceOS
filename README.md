@@ -65,6 +65,43 @@ qemu-system-x86_64 -enable-kvm -m 4G -smp 4 -nic user,model=virtio-net-pci \
 Live session: user `user`, password `live`. The welcome dialog offers
 **Install NiceOS** (Calamares); the same entry is in the app menu.
 
+## Run on Termux (Android)
+
+The ISO itself needs a real VM — QEMU runs under Termux but without KVM it
+is pure CPU emulation (slow). The fast path is the desktop reskin applied
+directly to a proot Debian on **Termux:X11**:
+
+1. Install [Termux](https://github.com/termux/termux-app/releases) and the
+   [Termux:X11](https://github.com/termux/termux-x11/releases) app (GitHub
+   releases, not the Play Store builds).
+2. In Termux:
+
+   ```sh
+   pkg update && pkg install proot-distro x11-repo termux-x11-nightly
+   termux-x11 :0 &                  # start the X display / open the app
+   proot-distro install debian
+   proot-distro login debian --shared-tmp
+   ```
+
+3. Inside the proot Debian, apply NiceOS and start the desktop:
+
+   ```sh
+   bash <(curl -fsSL https://raw.githubusercontent.com/oakridge-rgb/NiceOS/main/termux/niceos-termux.sh)
+   export DISPLAY=:0 && startxfce4
+   ```
+
+You get the Niceos GTK theme, Papirus-Dark icons, Noto Sans fonts, the
+wallpaper, the Mac-like top bar + dock (Termux variant: no power plugin,
+no Firefox item) and the `os-release` identity. What does **not** apply on
+Android: Plymouth, GRUB theme, LightDM and the Calamares installer —
+Android owns boot and storage. Compositing is disabled automatically
+(software rendering on phones).
+
+Optional audio: in Termux run
+`pulseaudio --start --load-module module-native-protocol-tcp`, then inside
+the distro `apt install pulseaudio` and
+`export PULSE_SERVER=127.0.0.1:4713`.
+
 ## Customize
 
 - **Colors** — edit the palette in `assets-src/generate_assets.py`

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NiceOS panel layout, Termux variant: no power-manager plugin (no upower
+     under proot/Android) and no Firefox dock launcher (not installed). -->
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="int" value="2"/>
+  <property name="panels" type="array">
+    <!-- panel 0: Mac-like top bar -->
+    <property name="panel-0" type="empty">
+      <property name="position" type="string" value="p=6;x=0;y=0"/>
+      <property name="length" type="uint" value="100"/>
+      <property name="length-adjustment" type="uint" value="0"/>
+      <property name="size" type="uint" value="30"/>
+      <property name="icon-size" type="uint" value="16"/>
+      <property name="mode" type="uint" value="0"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <property name="A" type="double" value="0.07"/>
+        <property name="B" type="double" value="0.05"/>
+        <property name="C" type="double" value="0.15"/>
+        <property name="D" type="double" value="0.83"/>
+      </property>
+      <property name="plugin-ids" type="array">
+        <property name="plugin-1" type="uint" value="1"/>
+        <property name="plugin-2" type="uint" value="2"/>
+        <property name="plugin-3" type="uint" value="3"/>
+        <property name="plugin-4" type="uint" value="4"/>
+        <property name="plugin-5" type="uint" value="5"/>
+        <property name="plugin-6" type="uint" value="6"/>
+        <property name="plugin-7" type="uint" value="7"/>
+      </property>
+    </property>
+    <!-- panel 1: bottom dock, auto-hide -->
+    <property name="panel-1" type="empty">
+      <property name="position" type="string" value="p=10;x=0;y=0"/>
+      <property name="length" type="uint" value="55"/>
+      <property name="length-adjustment" type="uint" value="0"/>
+      <property name="size" type="uint" value="52"/>
+      <property name="icon-size" type="uint" value="40"/>
+      <property name="mode" type="uint" value="0"/>
+      <property name="autohide-behavior" type="uint" value="1"/>
+      <property name="background-style" type="uint" value="1"/>
+      <property name="background-rgba" type="array">
+        <property name="A" type="double" value="0.05"/>
+        <property name="B" type="double" value="0.04"/>
+        <property name="C" type="double" value="0.12"/>
+        <property name="D" type="double" value="0.72"/>
+      </property>
+      <property name="plugin-ids" type="array">
+        <property name="plugin-11" type="uint" value="11"/>
+        <property name="plugin-12" type="uint" value="12"/>
+        <property name="plugin-13" type="uint" value="13"/>
+        <property name="plugin-14" type="uint" value="14"/>
+      </property>
+    </property>
+  </property>
+
+  <!-- top panel plugins -->
+  <property name="plugin-1" type="string" value="whiskermenu">
+    <property name="button-icon" type="string" value="niceos"/>
+    <property name="show-button-title" type="bool" value="false"/>
+    <property name="menu-width" type="int" value="420"/>
+    <property name="menu-height" type="int" value="540"/>
+    <property name="favorites" type="array">
+      <property name="fav-1" type="string" value="thunar.desktop"/>
+      <property name="fav-2" type="string" value="xfce4-terminal.desktop"/>
+      <property name="fav-3" type="string" value="mousepad.desktop"/>
+    </property>
+  </property>
+  <property name="plugin-2" type="string" value="separator">
+    <property name="style" type="uint" value="0"/>
+  </property>
+  <property name="plugin-3" type="string" value="tasks">
+    <property name="grouping" type="bool" value="true"/>
+    <property name="show-labels" type="bool" value="true"/>
+    <property name="flat-buttons" type="bool" value="true"/>
+  </property>
+  <property name="plugin-4" type="string" value="separator">
+    <property name="expand" type="bool" value="true"/>
+    <property name="style" type="uint" value="0"/>
+  </property>
+  <property name="plugin-5" type="string" value="systray">
+    <property name="square-icons" type="bool" value="true"/>
+  </property>
+  <property name="plugin-6" type="string" value="clock">
+    <property name="mode" type="uint" value="2"/>
+    <property name="digital-format" type="string" value="%H:%M"/>
+    <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
+  </property>
+  <property name="plugin-7" type="string" value="separator">
+    <property name="style" type="uint" value="0"/>
+  </property>
+
+  <!-- dock plugins -->
+  <property name="plugin-11" type="string" value="launcher">
+    <property name="launcher-items" type="array">
+      <property name="item-0" type="empty">
+        <property name="desktop" type="string" value="/usr/share/applications/thunar.desktop"/>
+      </property>
+    </property>
+  </property>
+  <property name="plugin-12" type="string" value="launcher">
+    <property name="launcher-items" type="array">
+      <property name="item-0" type="empty">
+        <property name="desktop" type="string" value="/usr/share/applications/xfce4-terminal.desktop"/>
+      </property>
+    </property>
+  </property>
+  <property name="plugin-13" type="string" value="launcher">
+    <property name="launcher-items" type="array">
+      <property name="item-0" type="empty">
+        <property name="desktop" type="string" value="/usr/share/applications/mousepad.desktop"/>
+      </property>
+    </property>
+  </property>
+  <property name="plugin-14" type="string" value="tasks">
+    <property name="grouping" type="bool" value="true"/>
+    <property name="show-labels" type="bool" value="false"/>
+    <property name="flat-buttons" type="bool" value="true"/>
+  </property>
+</channel>
