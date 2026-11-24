@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome to NiceOS
+Comment=Welcome screen and installer launcher (first login)
+Exec=/usr/bin/niceos-welcome --autostart
+Icon=niceos
+Terminal=false
+OnlyShowIn=XFCE;

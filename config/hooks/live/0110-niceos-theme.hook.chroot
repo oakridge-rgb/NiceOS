@@ -1,0 +1,24 @@
+#!/bin/sh
+# NiceOS theme wiring: Plymouth splash, GRUB theme (installed system),
+# and skel propagation to the live user if it already exists.
+set -e
+
+# --- Plymouth: register + select the Niceos splash, bake into initramfs ---
+update-alternatives --install /usr/share/plymouth/themes/default.plymouth \
+    default.plymouth /usr/share/plymouth/themes/niceos/niceos.plymouth 100
+update-alternatives --set default.plymouth \
+    /usr/share/plymouth/themes/niceos/niceos.plymouth
+printf 'FRAMEBUFFER=y\n' > /etc/initramfs-tools/conf.d/niceos-plymouth
+update-initramfs -u
+
+# --- GRUB theme for the installed system ---
+# Calamares' grubcfg module copies /etc/default/grub to the target, so the
+# installed system keeps the themed boot menu.
+grep -q '^GRUB_THEME=' /etc/default/grub || \
+    printf '\nGRUB_THEME="/usr/share/grub/themes/niceos/theme.txt"\n' >> /etc/default/grub
+
+# --- Skel: if live-build already created the user, refresh its defaults ---
+if getent passwd user >/dev/null 2>&1; then
+    cp -a /etc/skel/. /home/user/
+    chown -R user:user /home/user
+fi

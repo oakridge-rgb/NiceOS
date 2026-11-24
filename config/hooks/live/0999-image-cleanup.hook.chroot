@@ -1,0 +1,8 @@
+#!/bin/sh
+# Shrink the image: drop package caches, docs, man pages, logs.
+set -e
+apt-get clean
+rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb \
+       /var/cache/apt/archives/partial/* /tmp/* /var/tmp/*
+find /var/log -type f -exec truncate -s 0 {} \; 2>/dev/null || true
+rm -rf /usr/share/man/* /usr/share/doc/*

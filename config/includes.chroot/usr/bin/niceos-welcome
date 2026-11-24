@@ -1,0 +1,46 @@
+#!/bin/bash
+# NiceOS welcome dialog + installer launcher.
+# Runs on first login (autostart) and from the "Welcome to NiceOS" menu entry.
+set -u
+
+MARKER="$HOME/.config/niceos/welcomed"
+
+case "${1:-}" in
+    --autostart)
+        [ -f "$MARKER" ] && exit 0
+        ;;
+esac
+
+mkdir -p "$HOME/.config/niceos"
+touch "$MARKER"
+
+if zenity --question \
+    --title="Welcome to NiceOS" \
+    --width=470 \
+    --no-wrap \
+    --ok-label="Install NiceOS" \
+    --cancel-label="Explore the desktop" \
+    --text="<big><b>Welcome to NiceOS 1.0</b></big>
+
+A purple-blue reskin of Debian 13 with the XFCE desktop.
+
+ - Mac-like top panel + bottom dock
+ - Niceos GTK theme with purple accents
+ - Plymouth boot splash and LightDM login
+
+Would you like to <b>install NiceOS</b> on this computer now?" 2>/dev/null; then
+    exec calamares
+else
+    zenity --info \
+        --title="NiceOS" \
+        --width=460 \
+        --no-wrap \
+        --text="Enjoy exploring NiceOS!
+
+When you are ready to install:
+ - Open the menu (top-left) and choose <b>Install NiceOS</b>
+
+Tips:
+ - The live session password is: <b>live</b>
+ - Underneath it is Debian 13 (trixie), so apt works as usual." 2>/dev/null || true
+fi

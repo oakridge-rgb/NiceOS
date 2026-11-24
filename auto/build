@@ -1,0 +1,3 @@
+#!/bin/sh
+# Standard live-build entry point (used by ./build.sh and CI).
+lb build noauto "${@}"

@@ -1,0 +1,67 @@
+/* Niceos GTK3 theme — Arc-Dark base with a purple/blue accent. */
+@import url("../../Arc-Dark/gtk-3.0/gtk.css");
+
+@define-color accent_color #7C4DFF;
+@define-color accent_bg_color #7C4DFF;
+@define-color accent_fg_color #ffffff;
+@define-color selected_bg_color #7C4DFF;
+@define-color selected_fg_color #ffffff;
+@define-color theme_selected_bg_color #7C4DFF;
+@define-color theme_selected_fg_color #ffffff;
+@define-color niceos_purple #7C4DFF;
+@define-color niceos_blue #2979FF;
+
+/* Headerbars: deep indigo with a purple bottom edge. */
+headerbar, .titlebar {
+    background-image: linear-gradient(to bottom, #221a3f, #1b1533);
+    border-bottom: 2px solid @niceos_purple;
+}
+headerbar entry:focus,
+.titlebar entry:focus {
+    border-color: @accent_color;
+}
+
+/* Text selection */
+*:selected,
+.view:selected,
+.view:selected:focus,
+iconview:selected,
+flowbox flowboxchild:selected {
+    background-color: @selected_bg_color;
+    color: @selected_fg_color;
+}
+
+/* Entries: purple focus ring */
+entry:focus,
+spinbutton:focus {
+    border-color: @accent_color;
+    box-shadow: inset 0 0 0 1px @accent_color;
+}
+
+/* Progress + sliders: purple->blue gradient */
+progressbar progress {
+    background-image: linear-gradient(to right, @niceos_purple, @niceos_blue);
+    border-radius: 3px;
+}
+scale trough highlight {
+    background-color: @accent_color;
+}
+
+/* Buttons and toggles */
+button.suggested-action {
+    background-image: linear-gradient(to right, @niceos_purple, @niceos_blue);
+    color: #ffffff;
+}
+button:checked {
+    background-color: @accent_color;
+    color: #ffffff;
+}
+check:checked,
+radio:checked {
+    background-color: @accent_color;
+    color: #ffffff;
+}
+switch:checked {
+    background-color: @accent_color;
+    color: #ffffff;
+}

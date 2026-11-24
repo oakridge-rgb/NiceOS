@@ -1,0 +1,16 @@
+NiceOS — a purple/blue reskin of Debian 13 + XFCE
+Copyright (C) 2026 oakridge-rgb
+
+This repository's configuration, hooks, themes and generated artwork are
+free software: you can redistribute them and/or modify them under the terms
+of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version (SPDX: GPL-3.0-or-later).
+
+The full license text is available at:
+https://www.gnu.org/licenses/gpl-3.0.txt
+
+This distribution builds on Debian GNU/Linux and packages the work of many
+upstream projects (XFCE, Arc theme, Papirus icons, Plymouth, Calamares,
+lightdm, Firefox). Their artwork and code remain the property of their
+respective authors under their own licenses.

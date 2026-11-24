@@ -1,0 +1,55 @@
+name: Build NiceOS ISO
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build tools (live-build from Debian trixie)
+        run: |
+          set -eo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            wget curl ca-certificates debootstrap xorriso squashfs-tools \
+            grub-pc-bin grub-efi-amd64-bin mtools fakeroot sudo
+          # Pin trixie's live-build: the runner's distro ships an older one.
+          LB_VER=$(curl -s http://deb.debian.org/debian/pool/main/l/live-build/ \
+            | grep -oP 'live-build_\K[0-9][0-9a-zA-Z:~+.-]*(?=_all\.deb)' \
+            | sort -V | tail -1)
+          echo "Using live-build ${LB_VER}"
+          curl -fsSLo /tmp/live-build.deb \
+            "http://deb.debian.org/debian/pool/main/l/live-build/live-build_${LB_VER}_all.deb"
+          sudo apt-get install -y /tmp/live-build.deb
+
+      - name: Build the ISO
+        run: |
+          set -eo pipefail
+          sudo ./build.sh 2>&1 | tee build.log
+          test ${PIPESTATUS[0]} -eq 0
+          test -f binary.iso
+          mv binary.iso NiceOS-1.0-amd64.iso
+          ls -la NiceOS-1.0-amd64.iso
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NiceOS-1.0-amd64.iso
+          path: NiceOS-1.0-amd64.iso
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Publish release (on version tags)
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" NiceOS-1.0-amd64.iso \
+            --title "NiceOS ${GITHUB_REF_NAME}" \
+            --notes "Bootable NiceOS ISO — Debian 13 + XFCE, purple/blue reskin. Live session password: live."

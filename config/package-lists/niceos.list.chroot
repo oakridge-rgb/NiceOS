@@ -1,0 +1,54 @@
+## NiceOS — Debian 13 (trixie) + XFCE purple/blue reskin
+## Installed into the live chroot.
+
+## XFCE desktop
+xfce4
+xfce4-whiskermenu-plugin
+xfce4-pulseaudio-plugin
+xfce4-notifyd
+xfce4-power-manager
+thunar
+thunar-archive-plugin
+xarchiver
+xfce4-terminal
+mousepad
+ristretto
+
+## Session / display manager
+xserver-xorg
+lightdm
+lightdm-gtk-greeter
+
+## Network + audio
+network-manager
+network-manager-gnome
+pipewire
+pipewire-pulse
+wireplumber
+rtkit
+
+## Browser
+firefox-esr
+
+## Theme + fonts (Niceos GTK theme overlays Arc-Dark)
+arc-theme
+papirus-icon-theme
+fonts-noto-core
+
+## Desktop niceties
+gvfs
+gvfs-backends
+zenity
+sudo
+xdg-user-dirs
+
+## Boot splash
+plymouth
+plymouth-label
+
+## Installer + disk tools (branded "Install NiceOS" via Calamares)
+calamares
+calamares-settings-debian
+
+## GRUB (provides /etc/default/grub for the theme hook; used by Calamares)
+grub-efi-amd64

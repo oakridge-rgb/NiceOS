@@ -1,0 +1,18 @@
+#!/bin/sh
+# NiceOS live-build configuration — Debian 13 (trixie) + XFCE.
+# Modify with care: every option here must exist in trixie's live-build.
+lb config noauto \
+    --distribution trixie \
+    --architectures amd64 \
+    --archive-areas "main contrib non-free non-free-firmware" \
+    --binary-images iso-hybrid \
+    --bootappend-live "boot=live components quiet splash" \
+    --username user \
+    --password live \
+    --iso-volume "NiceOS-1.0" \
+    --iso-application "NiceOS" \
+    --iso-publisher "NiceOS Project; https://github.com/oakridge-rgb/NiceOS; https://github.com/oakridge-rgb/NiceOS; en" \
+    --memtest none \
+    --source false \
+    --cache false \
+    "${@}"

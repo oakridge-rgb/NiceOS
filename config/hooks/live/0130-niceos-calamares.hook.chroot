@@ -1,0 +1,17 @@
+#!/bin/sh
+# Calamares: point it at the Niceos branding and prepare installer rights.
+set -e
+
+# calamares-settings-debian ships branding: debian — switch to ours.
+if [ -f /etc/calamares/settings.conf ]; then
+    sed -i 's/^\([[:space:]]*branding:\).*/\1 niceos/' /etc/calamares/settings.conf
+fi
+
+# Default install hostname (calamares users module).
+for f in /etc/calamares/modules/*.conf; do
+    [ -f "$f" ] || continue
+    sed -i 's/^hostname:.*/hostname: "niceos"/' "$f" || true
+done
+
+# Group checked by our polkit rule; user membership comes from 0130.
+getent group calamares >/dev/null 2>&1 || groupadd -r calamares

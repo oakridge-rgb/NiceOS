@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Install NiceOS
+GenericName=Installer
+Comment=Install NiceOS to your hard disk
+Exec=calamares
+Icon=niceos
+Terminal=false
+Categories=System;Utility;
+Keywords=installer;niceos;disk;

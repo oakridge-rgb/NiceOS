@@ -1,0 +1,4 @@
+#!/bin/sh
+# Reset the build tree.
+lb clean noauto "${@}"
+rm -f build.log binary.iso

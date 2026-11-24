@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=NiceOS
+Description=NiceOS purple-blue boot splash
+ModuleName=two-step
+
+[two-step]
+ImageDir=/usr/share/plymouth/themes/niceos
+BackgroundStartColor=0x171230
+BackgroundEndColor=0x0e1e4e

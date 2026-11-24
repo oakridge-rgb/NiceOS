@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome to NiceOS
+GenericName=Welcome
+Comment=Welcome screen and NiceOS installer launcher
+Exec=/usr/bin/niceos-welcome
+Icon=niceos
+Terminal=false
+Categories=XFCE;GTK;System;

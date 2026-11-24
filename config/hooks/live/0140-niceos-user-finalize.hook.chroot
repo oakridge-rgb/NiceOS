@@ -1,0 +1,12 @@
+#!/bin/sh
+# Finalize the live user: installer + admin groups, skel refresh.
+set -e
+
+getent passwd user >/dev/null 2>&1 || {
+    useradd -m -c "NiceOS live user" -s /bin/bash user
+    echo 'user:live' | chpasswd
+}
+
+usermod -aG calamares,sudo user 2>/dev/null || true
+cp -a /etc/skel/. /home/user/ 2>/dev/null || true
+chown -R user:user /home/user 2>/dev/null || true
