@@ -1,0 +1,7 @@
+[Configuration]
+FontName=Noto Sans Mono 10
+BackgroundMode=TRANSPARENT
+BackgroundDarkness=0.86
+ColorBackground=#14102b
+ColorForeground=#e6e1f5
+ScrollingUnlimited=TRUE

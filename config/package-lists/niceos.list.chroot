@@ -13,6 +13,8 @@ xarchiver
 xfce4-terminal
 mousepad
 ristretto
+galculator
+xfce4-screenshooter
 
 ## Session / display manager
 xserver-xorg
@@ -38,6 +40,7 @@ fonts-noto-core
 ## Desktop niceties
 gvfs
 gvfs-backends
+x11-xserver-utils
 zenity
 sudo
 xdg-user-dirs

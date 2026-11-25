@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=NiceOS wallpaper
+Comment=Apply the NiceOS wallpaper on every connected monitor
+Exec=/usr/bin/niceos-apply-wallpaper
+Icon=niceos
+Terminal=false
+NoDisplay=true
+OnlyShowIn=XFCE;

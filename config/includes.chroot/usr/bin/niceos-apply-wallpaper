@@ -1,0 +1,22 @@
+#!/bin/bash
+# NiceOS: make sure every connected monitor shows the NiceOS wallpaper.
+# Runs at session start (autostart) and is idempotent; handles any monitor
+# name reported by xrandr — including Termux:X11 where the name varies.
+set -u
+
+WALL="/usr/share/backgrounds/niceos/wallpaper-1920.jpg"
+[ -r "$WALL" ] || exit 0
+command -v xfconf-query >/dev/null 2>&1 || exit 0
+command -v xrandr >/dev/null 2>&1 || exit 0
+
+xrandr --current 2>/dev/null | awk '/ connected/ {print $1}' | while read -r MON; do
+    [ -n "$MON" ] || continue
+    BASE="/backdrop/screen0/monitor${MON}/workspace0"
+    xfconf-query -c xfce4-desktop -p "$BASE/image-path" \
+        -n -t string -s "$WALL" >/dev/null 2>&1
+    xfconf-query -c xfce4-desktop -p "$BASE/image-style" \
+        -n -t int -s 5 >/dev/null 2>&1
+    xfconf-query -c xfce4-desktop -p "$BASE/image-show" \
+        -n -t bool -s true >/dev/null 2>&1
+done
+exit 0

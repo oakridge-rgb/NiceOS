@@ -26,7 +26,8 @@ echo "[1/4] Installing Debian packages..."
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     xfce4 xfce4-whiskermenu-plugin xfce4-terminal thunar mousepad \
-    arc-theme papirus-icon-theme fonts-noto-core \
+    ristretto xarchiver galculator xfce4-screenshooter \
+    x11-xserver-utils arc-theme papirus-icon-theme fonts-noto-core \
     dbus dbus-x11 git curl zenity >/dev/null
 
 echo "[2/4] Fetching NiceOS reskin files..."
@@ -46,6 +47,7 @@ cp -a "$INC/usr/share/icons/hicolor/." /usr/share/icons/hicolor/
 cp -a "$INC/usr/share/niceos/." /usr/share/niceos/
 cp -a "$INC"/usr/share/applications/niceos-*.desktop /usr/share/applications/
 install -m 755 "$INC/usr/bin/niceos-welcome" /usr/bin/niceos-welcome
+install -m 755 "$INC/usr/bin/niceos-apply-wallpaper" /usr/bin/niceos-apply-wallpaper
 
 # Desktop defaults for the proot user (root) and any future users
 cp -a "$INC/etc/skel/." /root/
