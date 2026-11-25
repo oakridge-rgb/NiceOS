@@ -84,3 +84,7 @@ echo
 echo "NiceOS applied. Start it with:"
 echo "    export DISPLAY=:0 && startxfce4"
 echo "(termux-x11 :0 must be running in Termux; see README.md, Termux section.)"
+echo
+echo "Update tip: this script doubles as the updater — re-running it later"
+echo "re-applies the latest reskin files and installs any new apps. If the"
+echo "desktop was running, quit the session first, then re-run and start it again."

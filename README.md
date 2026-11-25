@@ -108,6 +108,28 @@ Optional audio: in Termux run
 the distro `apt install pulseaudio` and
 `export PULSE_SERVER=127.0.0.1:4713`.
 
+## Update
+
+**Termux (proot):** the installer doubles as the updater — re-running it
+re-applies the current reskin files, installs any new apps and rewrites
+the identity. Quit the desktop session first (a running xfconfd would
+overwrite copied config files on exit), then:
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/oakridge-rgb/NiceOS/main/termux/niceos-termux.sh)
+export DISPLAY=:0 && startxfce4
+```
+
+Keep the Debian base current inside the distro with
+`apt update && apt full-upgrade`.
+
+**Installed ISO (VM):** the reskin is baked into the image at build time —
+there is no NiceOS package repository. `apt update && apt full-upgrade`
+inside the installed system keeps Debian itself current; to get the latest
+NiceOS look, download the newest ISO from the GitHub Actions build
+artifacts (or rebuild locally) and reinstall, or cherry-pick the changed
+theme files from this repo into `/usr/share/` and `/etc/skel/`.
+
 ## Customize
 
 - **Colors** — edit the palette in `assets-src/generate_assets.py`
